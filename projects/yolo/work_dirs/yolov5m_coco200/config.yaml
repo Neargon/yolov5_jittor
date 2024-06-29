@@ -1,0 +1,93 @@
+batch_size: 1
+checkpoint_interval: 10
+dataset:
+  test:
+    batch_size: 1
+    imgsz: 640
+    num_workers: 8
+    path: C:\Users\Admin\Desktop\yolox\dataset\labels\test.txt
+    stride: 32
+    task: test
+    type: YoloDataset
+  train:
+    augment: true
+    augment_hsv:
+      hgain: 0.015
+      sgain: 0.7
+      type: YoloAugmentHSV
+      vgain: 0.4
+    batch_size: 1
+    fliplr:
+      direction: horizontal
+      prob: 0.5
+      type: YoloRandomFlip
+    flipud:
+      direction: vertical
+      prob: 0.0
+      type: YoloRandomFlip
+    imgsz: 640
+    num_workers: 8
+    path: C:\Users\Admin\Desktop\yolox\dataset\labels\train.txt
+    random_perspective:
+      degrees: 0.0
+      perspective: 0.0
+      scale: 0.5
+      shear: 0.0
+      translate: 0.1
+      type: YoloRandomPerspective
+    stride: 32
+    task: train
+    type: YoloDataset
+  val:
+    batch_size: 1
+    imgsz: 640
+    num_workers: 8
+    path: C:\Users\Admin\Desktop\yolox\dataset\labels\val.txt
+    stride: 32
+    task: val
+    type: YoloDataset
+dataset_type: YoloDataset
+eval_interval: 10
+imgsz: 640
+imgsz_test: 640
+log_interval: 1
+logger:
+  type: RunLogger
+max_epoch: 300
+model:
+  anchor_t: 4.0
+  boxlg: 0.05
+  ch: 3
+  cls_pw: 1.0
+  clslg: 0.5
+  ema: true
+  fl_gamma: 0.0
+  imgsz: 640
+  nc: 80
+  obj_pw: 1.0
+  objlg: 1.0
+  type: YOLOv5M
+name: yolov5m_coco200
+optimizer:
+  lr: 0.01
+  momentum: 0.937
+  nesterov: true
+  type: SGD
+parameter_groups_generator:
+  batch_size: 1
+  type: YoloParameterGroupsGenerator
+  weight_decay: 0.0005
+scheduler:
+  max_steps: 300
+  min_lr_ratio: 0.2
+  type: CosineAnnealingLRGroup
+  warmup: linear
+  warmup_init_lr_pg:
+  - 0.0
+  - 0.0
+  - 0.1
+  warmup_initial_momentum: 0.8
+  warmup_iters: 1000
+  warmup_ratio: 0.0
+stride: 32
+work_dir: work_dirs/yolov5m_coco200
